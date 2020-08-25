@@ -2,7 +2,7 @@ class SightingsController < ApplicationController
 
   def index
     sightings = Sighting.all
-    render json: sightings.to_json(include: [:bird, :location])
+    render json: sightings.to_json(only: [:id, :bird_id, :location_id], include: [:bird, :location])
   end
 
   def show
