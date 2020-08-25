@@ -10,7 +10,7 @@ class SightingsController < ApplicationController
     if sighting
       render json: sighting.to_json(only: [:id, :bird_id, :location_id], include: [:bird, :location])
     else
-      render {message: "Bird not found :("}
+      render {message: 'Bird not found :('}
     end
   end
 end
