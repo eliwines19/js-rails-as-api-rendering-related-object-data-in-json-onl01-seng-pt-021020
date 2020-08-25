@@ -9,7 +9,10 @@ class SightingsController < ApplicationController
     sighting = Sighting.find_by(id: params[:id])
 
     if sighting
-      render json: sighting.to_json(only: [:id, :bird_id, :location_id], include: [:bird, :location], except: [:created_at, :updated_at])
+      render json: sighting.to_json(:include => {
+        :bird => {only: [:name, :species]},
+        :location => {only: [:longitude, :latitude]}
+        }), except: => [:updated_at]
     else
       render json: {message: 'Bird not found'}
     end
